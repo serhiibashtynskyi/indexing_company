@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Download Excel File - simplesolution.dev</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <p class="text-danger" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+    <p class="text-success" th:if="${successMessage}" th:text="${successMessage}"></p>
+    <form method="POST" enctype="multipart/form-data" action="/uploadFile">
+        <div class="form-group">
+            <label for="exampleFormControlFile1">File to upload</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload, handle and download result</button>
+    </form>
+</div>
+</body>
+</html>
