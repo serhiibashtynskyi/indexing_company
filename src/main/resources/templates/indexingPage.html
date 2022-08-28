@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Download Excel File - simplesolution.dev</title>
+    <title>Indexing Unique Values for Excel file</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: rgb(174, 255, 128, 0.4);">
 <div class="container">
     <p class="text-danger" th:if="${errorMessage}" th:text="${errorMessage}"></p>
     <p class="text-success" th:if="${successMessage}" th:text="${successMessage}"></p>
@@ -36,6 +36,17 @@
                 Download handled file
             </button>
         </div>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <form method="GET" action="/" style="margin-left: 2.5em">
+        <button type="submit" class="btn btn-primary" style="margin-left: 2.5em; text-align: center; width: 300px;">
+            Return to homepage
+        </button>
     </form>
 </div>
 </body>

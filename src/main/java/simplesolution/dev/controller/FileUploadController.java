@@ -23,9 +23,9 @@ public class FileUploadController {
 
     private static final String UPLOAD_DIRECTORY = "";
 
-    @GetMapping("/")
-    public String homepage() {
-        return "index";
+    @GetMapping("/indexing")
+    public String getIndexingPage() {
+        return "indexingPage";
     }
 
     @PostMapping("/uploadFile")
@@ -33,14 +33,14 @@ public class FileUploadController {
             @RequestParam("file") MultipartFile file,
             RedirectAttributes redirectAttributes,
             HttpServletResponse response,
-            @RequestParam(name = "iterated", required = true, defaultValue = "0") String iterated,
-            @RequestParam(name = "referenced", required = true, defaultValue = "1") String referenced
+            @RequestParam(name = "iterated", required = true, defaultValue = "1") String iterated,
+            @RequestParam(name = "referenced", required = true, defaultValue = "2") String referenced
 
     )
             throws IOException {
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "Please select a file to upload.");
-            return "redirect:/";
+            return "redirect:/indexingController";
         }
 
         Path path = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
