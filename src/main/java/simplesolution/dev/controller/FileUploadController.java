@@ -26,7 +26,7 @@ public class FileUploadController {
     private final String UPLOAD_DIRECTORY = "";
 
     @GetMapping("/")
-    public String uploadFileForm() {
+    public String homepage() {
         return "index";
     }
 
