@@ -1,14 +1,7 @@
 package simplesolution.dev.controller;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Hashtable;
-
 import lombok.Cleanup;
 import org.apache.commons.compress.utils.IOUtils;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
@@ -19,11 +12,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 
 @Controller
 public class FileUploadController {
 
-    private final String UPLOAD_DIRECTORY = "";
+    private static final String UPLOAD_DIRECTORY = "";
 
     @GetMapping("/")
     public String homepage() {
@@ -62,16 +60,16 @@ public class FileUploadController {
         int i = 1;
         int readCell = 1;
         int writeCell = 0;
-        Hashtable balance = new Hashtable();
+        HashMap<String, String> balance = new HashMap<>();
         for (int j = 1; j < worksheet.getLastRowNum(); j++) {
             String currentCompany = worksheet.getRow(j).getCell(readCell).toString();
             if (!balance.containsKey(currentCompany)) {
-                balance.put(worksheet.getRow(j).getCell(readCell).toString(), i);
+                balance.put(worksheet.getRow(j).getCell(readCell).toString(), String.valueOf(i));
                 worksheet.getRow(j).getCell(writeCell).setCellValue(i);
                 i++;
                 continue;
             }
-            worksheet.getRow(j).getCell(writeCell).setCellValue(balance.get(currentCompany).toString());
+            worksheet.getRow(j).getCell(writeCell).setCellValue(balance.get(currentCompany));
         }
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
