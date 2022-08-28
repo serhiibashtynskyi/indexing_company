@@ -29,7 +29,14 @@ public class FileUploadController {
     }
 
     @PostMapping("/uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, HttpServletResponse response)
+    public String uploadFile(
+            @RequestParam("file") MultipartFile file,
+            RedirectAttributes redirectAttributes,
+            HttpServletResponse response,
+            @RequestParam(name = "iterated", required = true, defaultValue = "0") String iterated,
+            @RequestParam(name = "referenced", required = true, defaultValue = "1") String referenced
+
+    )
             throws IOException {
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "Please select a file to upload.");
@@ -48,18 +55,18 @@ public class FileUploadController {
         try (OutputStream outStream = new FileOutputStream(targetFile)) {
             outStream.write(buffer);
         }
-        handleExcel(targetFile, response);
+        handleExcel(targetFile, response, iterated, referenced);
         return "redirect:/";
     }
 
-    public void handleExcel(File file, HttpServletResponse response) throws IOException {
+    public void handleExcel(File file, HttpServletResponse response, String iterated, String referenced) throws IOException {
 
         @Cleanup FileInputStream fileInputStream = new FileInputStream(file.getAbsolutePath());
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
         XSSFSheet worksheet = workbook.getSheetAt(0);
         int i = 1;
-        int readCell = 1;
-        int writeCell = 0;
+        int readCell = Integer.parseInt(referenced) - 1;
+        int writeCell = Integer.parseInt(iterated) - 1;
         HashMap<String, String> balance = new HashMap<>();
         for (int j = 1; j < worksheet.getLastRowNum(); j++) {
             String currentCompany = worksheet.getRow(j).getCell(readCell).toString();

@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Download Excel File - simplesolution.dev</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -8,12 +9,33 @@
 <div class="container">
     <p class="text-danger" th:if="${errorMessage}" th:text="${errorMessage}"></p>
     <p class="text-success" th:if="${successMessage}" th:text="${successMessage}"></p>
-    <form method="POST" enctype="multipart/form-data" action="/uploadFile">
+    <label for="title" style="margin-left: 2.5em"><strong>Indexing Unique Values for Excel file</strong></label>
+    <form method="POST" enctype="multipart/form-data" action="/uploadFile" style="margin-left: 2.5em">
         <div class="form-group">
-            <label for="exampleFormControlFile1">File to upload</label>
-            <input type="file" class="form-control-file" id="file" name="file">
+            <label for="file">File to upload. It should be xlsx file</label>
+            <input type="file" class="form-control-file" id="file" name="file"
+                   style="margin-left: 2.5em;border-width: 2px; border-color: black; border-style:solid; width: 300px;">
         </div>
-        <button type="submit" class="btn btn-primary">Upload, handle and download result</button>
+        <br>
+        <div class="iterated">
+            <label for="iterated">Choose number of vertical column where index numbers will be updated</label>
+            <input type="text" class="form-control-file" id="iterated" name="iterated"
+                   style="margin-left: 2.5em;border-width: 2px; border-color: black; border-style:solid; width: 300px;">
+        </div>
+        <div class="referenced">
+            <label for="referenced">Choose number of vertical column which you want to reindex</label>
+            <input type="text" class="form-control-file" id="referenced" name="referenced"
+                   style="margin-left: 2.5em;border-width: 2px; border-color: black; border-style:solid; width: 300px;">
+        </div>
+        <br>
+        <div class="button">
+            <label for="referenced">Click when you are already ready to handle your file. It will be downloaded in a
+                couple of seconds</label>
+            <br>
+            <button type="submit" class="btn btn-primary" style="margin-left: 2.5em; text-align: center; width: 300px;">
+                Download handled file
+            </button>
+        </div>
     </form>
 </div>
 </body>
