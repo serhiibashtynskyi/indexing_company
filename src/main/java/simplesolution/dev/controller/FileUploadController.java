@@ -40,7 +40,7 @@ public class FileUploadController {
             throws IOException {
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "Please select a file to upload.");
-            return "redirect:/indexingController";
+            return "redirect:/indexing";
         }
 
         Path path = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
