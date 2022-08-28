@@ -39,3 +39,6 @@ gradle bootJar & - > java -jar ${name}.jar does not allow you to make offline ru
 projects -> indexingCompany
 
 jar is placed in build->libs
+
+to find ports (java ones)(need to install):  netstat -tulpn | grep LISTEN
+to kill old application: sudo kill -9 $(sudo lsof -t -i:${port})
