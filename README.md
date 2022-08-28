@@ -1,7 +1,11 @@
 # indexing_company
 This application allow you to fill unique indexing of the certain column
 
+
 For example:
+
+![image](https://user-images.githubusercontent.com/106987380/187068187-ca467236-8482-4438-a169-532f92178db0.png)
+
 Before:
 Unique index | Column referenced    - > 
         null    Tuna
